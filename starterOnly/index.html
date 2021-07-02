@@ -63,29 +63,35 @@
               onsubmit="return validate();"
             >
               <div
-                class="formData">
-                <label>First Name</label><br>
+                class="formData"
+                id="first-name">
+                <label for="first">First Name</label><br>
                 <input
+                  data-error
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  minlength="2"
+                  required
                 /><br>
               </div>
               <div
-                class="formData">
-                <label>Last Name</label><br>
+                class="formData"
+                id="last-name">
+                <label for="last">Last Name</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="last"
                   name="last"
+                  minlength="2"
+                  required
                 /><br>
               </div>
               <div
-                class="formData">
-                <label>Email</label><br>
+                class="formData"
+                id="email-div">
+                <label for="email">Email</label><br>
                 <input
                   class="text-control"
                   type="email"
@@ -95,7 +101,7 @@
               </div>
               <div
                 class="formData">
-                <label>Birthdate</label><br>
+                <label for="birthdate">Birthdate</label><br>
                 <input
                   class="text-control"
                   type="date"
@@ -105,7 +111,7 @@
               </div>
               <div
                 class="formData">
-                <label>How many tournaments have you attended? </label><br>
+                <label for="quantity">How many tournaments have you attended? </label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">Which location?</p>
@@ -186,7 +192,7 @@
                   type="checkbox"
                   id="checkbox1"
                   checked
-                />
+                  required/>
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   I have read and I agree to GameOn's terms and conditions.
