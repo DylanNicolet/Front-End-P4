@@ -7,10 +7,16 @@ function editNav() {
   }
 }
 
+function removeValidationWarning(element, message) {
+  element.removeAttribute("data-error-visible");
+  element.removeAttribute("data-error");
+}
+
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const modalForm = document.getElementById("modal-form");
 const modalCloseButton = document.querySelector(".close");
 const submitButton = document.querySelector(".btn-submit");
 const radioButtons = document.getElementsByName("location");
@@ -22,6 +28,7 @@ const emailInput = document.getElementById("email");
 const emailDiv = document.getElementById("email-div");
 const locationDiv = document.getElementById("location-div");
 const checkboxOneInput = document.getElementById("checkbox1");
+const checkboxDiv = document.getElementById("checkbox-div");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -34,57 +41,73 @@ function launchModal() {
 // close modal form
 modalCloseButton.addEventListener("click", () => {
   modalbg.style.display = "none";
+  modalForm.reset();
+  removeValidationWarning(firstNameDiv);
+  removeValidationWarning(lastNameDiv);
+  removeValidationWarning(emailDiv);
+  removeValidationWarning(locationDiv);
+  removeValidationWarning(checkboxDiv);
 });
 
-//To test Email validity (returns true or false)
+// validate EMail (returns true or false)
 function validateEmail(emailAddress){      
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(emailAddress);
 }
 
-//Control if a radio button is selected
+// validate if a location radio button is selected
 function validateLocationCheckbox(){
   const checkboxs = document.getElementsByName("location");
   for(let i=0; i<checkboxs.length; i++){
     if(checkboxs[i].checked){
       return true;
-    } else{
-      return false;
     }
   }
 };
 
-//Validate Terms and Conditions
-function validateTermsAndConditions(){
- if (checkboxOneInput.checked){
-   return true;
- } else{
-   return false;
- }
-};
 
 // validate modal form user input
 submitButton.addEventListener("click", () => {
   if (firstNameInput.value.length < 2) {
     firstNameDiv.setAttribute("data-error-visible", "true");
     firstNameDiv.setAttribute("data-error", "Invalid first name (Insert minimum 2 letters)");
-  }
+  } else{
+    removeValidationWarning(firstNameDiv);
+  };
 
   if (lastNameInput.value.length < 2) {
     lastNameDiv.setAttribute("data-error-visible", "true");
     lastNameDiv.setAttribute("data-error", "Invalid last name (Insert minimum 2 letters)");
-  }
+  } else{
+    removeValidationWarning(lastNameDiv);
+  };
 
-  if (validateEmail(emailInput.value) === false) {
+  if (!validateEmail(emailInput.value)) {
     emailDiv.setAttribute("data-error-visible", "true");
     emailDiv.setAttribute("data-error", "Invalid Email Address");
-  }
+  } else{
+    removeValidationWarning(emailDiv);
+  };
 
-  if (validateLocationCheckbox() === false){
+  if (!validateLocationCheckbox()){
     locationDiv.setAttribute("data-error-visible", "true");
     locationDiv.setAttribute("data-error", "Please select a location");
-  }
+  } else{
+    removeValidationWarning(locationDiv);
+  };
 
-  if (validateTermsAndConditions === false){
-  }
+  if (checkboxOneInput.checked === false){
+    checkboxDiv.setAttribute("data-error-visible", "true");
+    checkboxDiv.setAttribute("data-error", "Terms and Conditions not checked");
+  } else{
+    removeValidationWarning(checkboxDiv);
+  };
 });
+
+function validate(){
+  if (checkboxOneInput.checked === false || !validateLocationCheckbox()) {
+    return false;
+  } else{
+    return true;
+  }
+};
