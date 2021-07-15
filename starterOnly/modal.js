@@ -7,7 +7,7 @@ function editNav() {
   }
 }
 
-function removeValidationWarning(element, message) {
+function removeValidationWarning(element) {
   element.removeAttribute("data-error-visible");
   element.removeAttribute("data-error");
 }
@@ -26,6 +26,8 @@ const lastNameInput = document.getElementById("last");
 const lastNameDiv = document.getElementById("last-name");
 const emailInput = document.getElementById("email");
 const emailDiv = document.getElementById("email-div");
+const birthdateInput = document.getElementById("birthdate");
+const birthdateDiv = document.getElementById("birthdate-div");
 const locationDiv = document.getElementById("location-div");
 const checkboxOneInput = document.getElementById("checkbox1");
 const checkboxDiv = document.getElementById("checkbox-div");
@@ -45,6 +47,7 @@ modalCloseButton.addEventListener("click", () => {
   removeValidationWarning(firstNameDiv);
   removeValidationWarning(lastNameDiv);
   removeValidationWarning(emailDiv);
+  removeValidationWarning(birthdateDiv);
   removeValidationWarning(locationDiv);
   removeValidationWarning(checkboxDiv);
 });
@@ -53,7 +56,13 @@ modalCloseButton.addEventListener("click", () => {
 function validateEmail(emailAddress){      
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(emailAddress);
-}
+};
+
+// validate Birthdate (returns true of false)
+function validateBirthdate(birthdate){
+  let birthdatePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
+  return birthdatePattern.test(birthdate);
+};
 
 // validate if a location radio button is selected
 function validateLocationCheckbox(){
@@ -89,6 +98,13 @@ submitButton.addEventListener("click", () => {
     removeValidationWarning(emailDiv);
   };
 
+  if (!validateBirthdate(birthdateInput.value)){
+    birthdateDiv.setAttribute("data-error-visible", "true");
+    birthdateDiv.setAttribute("data-error", "Please enter a valid birthdate");
+  } else{
+    removeValidationWarning(birthdateDiv);
+  }
+
   if (!validateLocationCheckbox()){
     locationDiv.setAttribute("data-error-visible", "true");
     locationDiv.setAttribute("data-error", "Please select a location");
@@ -98,14 +114,14 @@ submitButton.addEventListener("click", () => {
 
   if (checkboxOneInput.checked === false){
     checkboxDiv.setAttribute("data-error-visible", "true");
-    checkboxDiv.setAttribute("data-error", "Terms and Conditions not checked");
+    checkboxDiv.setAttribute("data-error", "Please check Terms and Conditions");
   } else{
     removeValidationWarning(checkboxDiv);
   };
 });
 
 function validate(){
-  if (checkboxOneInput.checked === false || !validateLocationCheckbox()) {
+  if (checkboxOneInput.checked === false || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
     return false;
   } else{
     return true;
