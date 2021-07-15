@@ -112,7 +112,7 @@ submitButton.addEventListener("click", () => {
     removeValidationWarning(locationDiv);
   };
 
-  if (checkboxOneInput.checked === false){
+  if (!checkboxOneInput.checked){
     checkboxDiv.setAttribute("data-error-visible", "true");
     checkboxDiv.setAttribute("data-error", "Please check Terms and Conditions");
   } else{
@@ -121,7 +121,7 @@ submitButton.addEventListener("click", () => {
 });
 
 function validate(){
-  if (checkboxOneInput.checked === false || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
+  if (!checkboxOneInput.checked || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
     return false;
   } else{
     return true;
