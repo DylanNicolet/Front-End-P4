@@ -56,12 +56,17 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <h3 id="success-message">
+              Thank you for <br>
+              submitting your <br>
+              registration details
+            </h3>
             <form
               id="modal-form"
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit=" validate(); return false"
             >
               <div
                 class="formData"
@@ -216,7 +221,14 @@
                 class="button"
                 value="Go"
               />
+              
             </form>
+            <input
+                id="btn-success"
+                type="button"
+                class="button"
+                value="Close"
+              />
           </div>
         </div>
       </div>

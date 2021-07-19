@@ -138,6 +138,23 @@ main {
 }
 
 /* Modal form */
+#success-message {
+  width: 85%;
+  padding: 55% 0px 55% 0px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 142.6%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+}
 
 .button {
   background: #fe142f;
@@ -334,6 +351,19 @@ input {
   cursor: pointer;
   border: 0;
 }
+
+#btn-success{
+  display: none;
+  background: #fe142f;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;

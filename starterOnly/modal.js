@@ -17,8 +17,11 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalForm = document.getElementById("modal-form");
+const successMessage = document.getElementById("success-message");
 const modalCloseButton = document.querySelector(".close");
+const modalBody = document.getElementsByClassName("modal-body");
 const submitButton = document.querySelector(".btn-submit");
+const successCloseButton = document.getElementById("btn-success");
 const radioButtons = document.getElementsByName("location");
 const firstNameInput = document.getElementById("first");
 const firstNameDiv = document.getElementById("first-name");
@@ -74,6 +77,25 @@ function validateLocationCheckbox(){
   }
 };
 
+// success close button
+successCloseButton.addEventListener("click", () => {
+  modalbg.style.display = "none";
+  modalForm.reset();
+  removeValidationWarning(firstNameDiv);
+  removeValidationWarning(lastNameDiv);
+  removeValidationWarning(emailDiv);
+  removeValidationWarning(birthdateDiv);
+  removeValidationWarning(locationDiv);
+  removeValidationWarning(checkboxDiv);
+});
+
+function validate(){
+  if (!checkboxOneInput.checked || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
+    modalForm.style.opacity = "0";
+    successMessage.style.display = "flex";
+    successCloseButton.style.display = "block";
+  };
+};
 
 // validate modal form user input
 submitButton.addEventListener("click", () => {
@@ -119,11 +141,3 @@ submitButton.addEventListener("click", () => {
     removeValidationWarning(checkboxDiv);
   };
 });
-
-function validate(){
-  if (!checkboxOneInput.checked || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
-    return false;
-  } else{
-    return true;
-  }
-};
