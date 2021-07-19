@@ -7,11 +7,6 @@ function editNav() {
   }
 }
 
-function removeValidationWarning(element) {
-  element.removeAttribute("data-error-visible");
-  element.removeAttribute("data-error");
-}
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -77,7 +72,7 @@ function validateLocationCheckbox(){
   }
 };
 
-// success close button
+// success message close button
 successCloseButton.addEventListener("click", () => {
   modalbg.style.display = "none";
   modalForm.reset();
@@ -87,57 +82,67 @@ successCloseButton.addEventListener("click", () => {
   removeValidationWarning(birthdateDiv);
   removeValidationWarning(locationDiv);
   removeValidationWarning(checkboxDiv);
+  modalForm.style.opacity = "1";
+  successMessage.style.display = "none";
+  successCloseButton.style.display = "none";
 });
 
-function validate(){
-  if (!checkboxOneInput.checked || !validateLocationCheckbox() || !validateBirthdate(birthdateInput.value)) {
-    modalForm.style.opacity = "0";
-    successMessage.style.display = "flex";
-    successCloseButton.style.display = "block";
-  };
-};
+// removes visual warning for invalid input
+function removeValidationWarning(element) {
+  element.removeAttribute("data-error-visible");
+  element.removeAttribute("data-error");
+}
 
-// validate modal form user input
+// add visual warning for invalid input
+function addValidationWarning(element, message) {
+  element.setAttribute("data-error-visible", "true");
+  element.setAttribute("data-error", message);
+}
+
+// provide visual feedback for invalid input
 submitButton.addEventListener("click", () => {
   if (firstNameInput.value.length < 2) {
-    firstNameDiv.setAttribute("data-error-visible", "true");
-    firstNameDiv.setAttribute("data-error", "Invalid first name (Insert minimum 2 letters)");
+    addValidationWarning(firstNameDiv, "Invalid first name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(firstNameDiv);
   };
 
   if (lastNameInput.value.length < 2) {
-    lastNameDiv.setAttribute("data-error-visible", "true");
-    lastNameDiv.setAttribute("data-error", "Invalid last name (Insert minimum 2 letters)");
+    addValidationWarning(lastNameDiv, "Invalid last name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(lastNameDiv);
   };
 
   if (!validateEmail(emailInput.value)) {
-    emailDiv.setAttribute("data-error-visible", "true");
-    emailDiv.setAttribute("data-error", "Invalid Email Address");
+    addValidationWarning(emailDiv, "Invalid Email Address");
   } else{
     removeValidationWarning(emailDiv);
   };
 
   if (!validateBirthdate(birthdateInput.value)){
-    birthdateDiv.setAttribute("data-error-visible", "true");
-    birthdateDiv.setAttribute("data-error", "Please enter a valid birthdate");
+    addValidationWarning(birthdateDiv, "Please enter a valid birthdate");
   } else{
     removeValidationWarning(birthdateDiv);
   }
 
   if (!validateLocationCheckbox()){
-    locationDiv.setAttribute("data-error-visible", "true");
-    locationDiv.setAttribute("data-error", "Please select a location");
+    addValidationWarning(locationDiv, "Please select a location");
   } else{
     removeValidationWarning(locationDiv);
   };
 
   if (!checkboxOneInput.checked){
-    checkboxDiv.setAttribute("data-error-visible", "true");
-    checkboxDiv.setAttribute("data-error", "Please check Terms and Conditions");
+    addValidationWarning(checkboxDiv, "Please check Terms and Conditions");
   } else{
     removeValidationWarning(checkboxDiv);
   };
 });
+
+//validate user input and display success message
+function validate(){
+  if (checkboxOneInput.checked && validateLocationCheckbox() && validateBirthdate(birthdateInput.value) && validateEmail(emailInput.value)) {
+    modalForm.style.opacity = "0";
+    successMessage.style.display = "flex";
+    successCloseButton.style.display = "block";
+  };
+};
