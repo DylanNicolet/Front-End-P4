@@ -43,12 +43,12 @@ img {
 .topnav a {
   float: left;
   display: block;
-  color: #000000;
+  color: #FF001B;
   text-align: center;
   padding: 12px 12px;
   margin: 5px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 25px;
   font-family: Roboto, sans-serif;
 }
 
@@ -97,7 +97,13 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+  }
+  .header-logo img{
+    width: 60%;
+    margin: 15px 0px 0px 15px;
+  }
+  .header-logo {
+    width: 70%;
   }
 } 
 
@@ -139,8 +145,8 @@ main {
 
 /* Modal form */
 #success-message {
-  width: 85%;
-  padding: 55% 0px 55% 0px;
+  width: 100%;
+  padding: 40% 0px 60% 0px;
   font-family: DM Sans;
   font-style: normal;
   font-weight: normal;
@@ -151,9 +157,10 @@ main {
   align-items: center;
   text-align: center;
   color: #FFFFFF;
-  position: absolute;
-  top: 0px;
   z-index: 3;
+  position: absolute;
+  left: 0px;
+  top: 60px;
 }
 
 .button {
@@ -203,6 +210,17 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+@media screen and (max-width: 540px) {
+  .bground {
+    background-color: rgba(26, 39, 156, 0);
+  }
+  .content {
+    margin: 20% auto 0px auto;
+    width: 100%;
+    max-width: 540px;
+  }
 }
 
 label {
@@ -355,13 +373,20 @@ input {
 #btn-success{
   display: none;
   background: #fe142f;
-  margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
   color: #fff;
   cursor: pointer;
   border: 0;
+  z-index: 4;
+  position: absolute;
+  bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 /* custom select styles */
@@ -545,6 +570,36 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding: 0px;
+    min-width: 0px;
+  }
+
+  .hero-content::after {
+    display: none;
+  }
+
+  .hero-headline {
+    font-size: 12.5vw;
+    font-weight: 600;
+  }
+
+  .hero-text {
+    font-size: 4vw;
+    width: auto;
+    margin: 25px 0px 0px 0px;
+  }
+
+  .copyrights {
+    margin-top: 0px;
   }
 }
 

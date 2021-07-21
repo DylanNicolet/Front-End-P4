@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalForm = document.getElementById("modal-form");
+const modalInput = document.getElementsByClassName("text-control");
 const successMessage = document.getElementById("success-message");
 const modalCloseButton = document.querySelector(".close");
 const modalBody = document.getElementsByClassName("modal-body");
@@ -48,6 +49,9 @@ modalCloseButton.addEventListener("click", () => {
   removeValidationWarning(birthdateDiv);
   removeValidationWarning(locationDiv);
   removeValidationWarning(checkboxDiv);
+  modalForm.style.opacity = "1";
+  successMessage.style.display = "none";
+  successCloseButton.style.display = "none";
 });
 
 // validate EMail (returns true or false)
