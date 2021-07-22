@@ -49,6 +49,7 @@ modalCloseButton.addEventListener("click", () => {
   removeValidationWarning(lastNameDiv);
   removeValidationWarning(emailDiv);
   removeValidationWarning(birthdateDiv);
+  removeValidationWarning(tournamentAmountDiv);
   removeValidationWarning(locationDiv);
   removeValidationWarning(checkboxDiv);
   modalForm.style.opacity = "1";
@@ -97,6 +98,7 @@ successCloseButton.addEventListener("click", () => {
   removeValidationWarning(lastNameDiv);
   removeValidationWarning(emailDiv);
   removeValidationWarning(birthdateDiv);
+  removeValidationWarning(tournamentAmountDiv);
   removeValidationWarning(locationDiv);
   removeValidationWarning(checkboxDiv);
   modalForm.style.opacity = "1";
