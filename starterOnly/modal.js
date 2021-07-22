@@ -66,6 +66,18 @@ function validateBirthdate(birthdate){
   return birthdatePattern.test(birthdate);
 };
 
+//controls that birth year is not in the future
+function validateBirthYear(birthdate){
+  const currentTime = new Date().getTime();
+  const inputDate = new Date(birthdate).getTime();
+  if (currentTime > inputDate) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 // validate if a location radio button is selected
 function validateLocationCheckbox(){
   const checkboxs = document.getElementsByName("location");
@@ -123,7 +135,7 @@ submitButton.addEventListener("click", () => {
     removeValidationWarning(emailDiv);
   };
 
-  if (!validateBirthdate(birthdateInput.value)){
+  if (!validateBirthdate(birthdateInput.value) || !validateBirthYear(birthdateInput.value)){
     addValidationWarning(birthdateDiv, "Please enter a valid birthdate");
   } else{
     removeValidationWarning(birthdateDiv);
@@ -144,7 +156,7 @@ submitButton.addEventListener("click", () => {
 
 //validate user input and display success message
 function validate(){
-  if (checkboxOneInput.checked && validateLocationCheckbox() && validateBirthdate(birthdateInput.value) && validateEmail(emailInput.value)) {
+  if (checkboxOneInput.checked && validateLocationCheckbox() && validateBirthdate(birthdateInput.value) && validateEmail(emailInput.value) && validateBirthYear(birthdateInput.value)) {
     modalForm.style.opacity = "0";
     successMessage.style.display = "flex";
     successCloseButton.style.display = "block";
