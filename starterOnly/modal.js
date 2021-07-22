@@ -27,6 +27,8 @@ const emailInput = document.getElementById("email");
 const emailDiv = document.getElementById("email-div");
 const birthdateInput = document.getElementById("birthdate");
 const birthdateDiv = document.getElementById("birthdate-div");
+const tournamentAmountInput = document.getElementById("quantity");
+const tournamentAmountDiv = document.getElementById("quantity-div");
 const locationDiv = document.getElementById("location-div");
 const checkboxOneInput = document.getElementById("checkbox1");
 const checkboxDiv = document.getElementById("checkbox-div");
@@ -77,7 +79,6 @@ function validateBirthYear(birthdate){
   }
 }
 
-
 // validate if a location radio button is selected
 function validateLocationCheckbox(){
   const checkboxs = document.getElementsByName("location");
@@ -88,7 +89,7 @@ function validateLocationCheckbox(){
   }
 };
 
-// success message close button
+// functionality for the success message close button
 successCloseButton.addEventListener("click", () => {
   modalbg.style.display = "none";
   modalForm.reset();
@@ -139,6 +140,12 @@ submitButton.addEventListener("click", () => {
     addValidationWarning(birthdateDiv, "Please enter a valid birthdate");
   } else{
     removeValidationWarning(birthdateDiv);
+  }
+
+  if (tournamentAmountInput.value.length == 0){
+    addValidationWarning(tournamentAmountDiv, "Please enter number of tournaments attended");
+  } else{
+    removeValidationWarning(tournamentAmountDiv);
   }
 
   if (!validateLocationCheckbox()){
