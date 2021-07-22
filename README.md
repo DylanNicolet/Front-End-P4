@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="logo.png"></h1>
+<img src="Logo.png"></h1>
 
 <h3 align="center">a mid-sized company specializing in gaming conferences and contests.</h3>
 
