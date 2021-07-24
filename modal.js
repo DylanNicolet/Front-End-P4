@@ -61,13 +61,13 @@ modalCloseButton.addEventListener("click", () => {
 function validateEmail(emailAddress){      
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(emailAddress);
-};
+}
 
 // validate Birthdate (returns true of false)
 function validateBirthdate(birthdate){
   let birthdatePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
   return birthdatePattern.test(birthdate);
-};
+}
 
 //controls that birth year is not in the future
 function validateBirthYear(birthdate){
@@ -88,7 +88,7 @@ function validateLocationCheckbox(){
       return true;
     }
   }
-};
+}
 
 // functionality for the success message close button
 successCloseButton.addEventListener("click", () => {
@@ -124,19 +124,19 @@ submitButton.addEventListener("click", () => {
     addValidationWarning(firstNameDiv, "Invalid first name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(firstNameDiv);
-  };
+  }
 
   if (lastNameInput.value.length < 2) {
     addValidationWarning(lastNameDiv, "Invalid last name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(lastNameDiv);
-  };
+  }
 
   if (!validateEmail(emailInput.value)) {
     addValidationWarning(emailDiv, "Invalid Email Address");
   } else{
     removeValidationWarning(emailDiv);
-  };
+  }
 
   if (!validateBirthdate(birthdateInput.value) || !validateBirthYear(birthdateInput.value)){
     addValidationWarning(birthdateDiv, "Please enter a valid birthdate");
@@ -154,13 +154,13 @@ submitButton.addEventListener("click", () => {
     addValidationWarning(locationDiv, "Please select a location");
   } else{
     removeValidationWarning(locationDiv);
-  };
+  }
 
   if (!checkboxOneInput.checked){
     addValidationWarning(checkboxDiv, "Please check Terms and Conditions");
   } else{
     removeValidationWarning(checkboxDiv);
-  };
+  }
 });
 
 //validate user input and display success message
@@ -169,5 +169,5 @@ function validate(){
     modalForm.style.opacity = "0";
     successMessage.style.display = "flex";
     successCloseButton.style.display = "block";
-  };
-};
+  }
+}
