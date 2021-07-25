@@ -57,6 +57,18 @@ modalCloseButton.addEventListener("click", () => {
   successCloseButton.style.display = "none";
 });
 
+// validate First name (returns true or false)
+function validateFirstName(firstName){
+  let firstNamePattern = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
+  return firstNamePattern.test(firstName);
+}
+
+// validate Last name (returns true or false)
+function validateLastName(lastName){
+  let LastNamePattern = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
+  return LastNamePattern.test(lastName);
+}
+
 // validate EMail (returns true or false)
 function validateEmail(emailAddress){      
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -120,13 +132,13 @@ function addValidationWarning(element, message) {
 
 // provide visual feedback for invalid input
 submitButton.addEventListener("click", () => {
-  if (firstNameInput.value.length < 2) {
+  if (firstNameInput.value.length < 2 || !validateFirstName(firstNameInput.value)) {
     addValidationWarning(firstNameDiv, "Invalid first name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(firstNameDiv);
   }
 
-  if (lastNameInput.value.length < 2) {
+  if (lastNameInput.value.length < 2 || !validateLastName(lastNameInput.value)) {
     addValidationWarning(lastNameDiv, "Invalid last name (Insert minimum 2 letters)");
   } else{
     removeValidationWarning(lastNameDiv);
@@ -165,9 +177,17 @@ submitButton.addEventListener("click", () => {
 
 //validate user input and display success message
 function validate(){
-  if (checkboxOneInput.checked && validateLocationCheckbox() && validateBirthdate(birthdateInput.value) && validateEmail(emailInput.value) && validateBirthYear(birthdateInput.value)) {
-    modalForm.style.opacity = "0";
-    successMessage.style.display = "flex";
-    successCloseButton.style.display = "block";
+  if (
+    validateFirstName(firstNameInput.value) &&
+    validateLastName(lastNameInput.value) &&
+    validateEmail(emailInput.value) && 
+    validateBirthdate(birthdateInput.value) &&
+    validateBirthYear(birthdateInput.value) &&
+    validateLocationCheckbox() &&
+    checkboxOneInput.checked
+    ) {
+      modalForm.style.opacity = "0";
+      successMessage.style.display = "flex";
+      successCloseButton.style.display = "block";
   }
 }
