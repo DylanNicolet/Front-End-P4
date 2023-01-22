@@ -3,7 +3,7 @@
 
 <h3 align="center">a mid-sized company specializing in gaming conferences and contests.</h3>
 
-># **[GameOn Live Webpage link](https://dylannicolet.github.io/)**
+># **[https://gameon-dylannicolet.netlify.app/](https://gameon-dylannicolet.netlify.app/)**
 
 >## **In a few words**
 The project is about building a landing page for GameOn to collect user information via form.
